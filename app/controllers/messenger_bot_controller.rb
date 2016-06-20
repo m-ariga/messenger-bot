@@ -17,8 +17,8 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"UNDER",
-                        "payload":"あんた誰"
+                        "title":"あんた誰",
+                        "payload":"UNDER"
                     }
                 ]
             }
@@ -34,7 +34,48 @@ class MessengerBotController < ActionController::Base
   def postback(event, sender)
     payload = event["postback"]["payload"]
     case payload
-    when :something
+    when "OVER"
+     sende.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"猫と犬どちらがお好きですか？",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"猫です。",
+                        "payload":"OVER"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"猫だよ",
+                        "payload":"UNDER"
+                    }
+                ]
+            }
+         }
+      })
+      when "UNDER"
+        sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"私は、猫好きの女が作ったメッセンジャーボットです。ところで、#{profile_last_name}#{profile_first_name}さんは猫と犬どちらがお好きですか",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"もちろん猫",
+                        "payload":"OVER"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"やっぱり猫",
+                        "payload":"UNDER"
+                    }
+                ]
+            }
+         }
+      })
       #ex) process sender.reply({text: "button click event!"})
     end
   end
