@@ -13,12 +13,12 @@ class MessengerBotController < ActionController::Base
                     {
                         "type":"postback",
                         "title":"OVER",
-                        "payload":"OVER"
+                        "payload":"はいどうも"
                     },
                     {
                         "type":"postback",
                         "title":"UNDER",
-                        "payload":"UNDER"
+                        "payload":"誰あんた"
                     }
                 ]
             }
