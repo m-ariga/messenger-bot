@@ -35,26 +35,27 @@ class MessengerBotController < ActionController::Base
     payload = event["postback"]["payload"]
     case payload
     when "OVER"
-     sende.reply({ "attachment":{
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"猫と犬どちらがお好きですか？",
-                "buttons":[
-                    {
-                        "type":"postback",
-                        "title":"猫です。",
-                        "payload":"OVER"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"猫だよ",
-                        "payload":"UNDER"
-                    }
-                ]
-            }
-         }
-      })
+      sender.reply({ text: "Reply" })
+    # sender.reply({ "attachment":{
+    #         "type":"template",
+    #         "payload":{
+    #             "template_type":"button",
+    #             "text":"猫と犬どちらがお好きですか？",
+    #             "buttons":[
+    #                 {
+    #                     "type":"postback",
+    #                     "title":"猫です。",
+    #                     "payload":"OVER"
+    #                 },
+    #                 {
+    #                     "type":"postback",
+    #                     "title":"猫だよ",
+    #                     "payload":"UNDER"
+    #                 }
+    #             ]
+    #         }
+    #     }
+    #   })
       when "UNDER"
         sender.reply({ "attachment":{
             "type":"template",
