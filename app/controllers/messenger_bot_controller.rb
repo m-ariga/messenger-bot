@@ -32,6 +32,9 @@ class MessengerBotController < ActionController::Base
   end
 
   def postback(event, sender)
+    profile = sender.get_profile[:body]
+    profile_last_name = profile['last_name']
+    profile_first_name = profile['first_name']
     payload = event["postback"]["payload"]
     case payload
     when "OVER"
