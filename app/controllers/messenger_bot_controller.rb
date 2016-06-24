@@ -46,14 +46,14 @@ class MessengerBotController < ActionController::Base
                 "text":"猫と犬どちらがお好きですか？",
                 "buttons":[
                     {
-                        "type":"postback",
-                        "title":"猫です。",
-                        "payload":"OVER"
+                        "type":"web-url",
+                        "url":"https://www.google.co.jp/search?q=%E7%8C%AB&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjetuaSisDNAhURNpQKHeiHDnkQ_AUICCgB&biw=1330&bih=650",
+                        "title":"猫です"
                     },
                     {
-                        "type":"postback",
-                        "title":"猫だよ",
-                        "payload":"UNDER"
+                        "type":"web-url",
+                        "url":"https://www.google.co.jp/search?q=%E7%8A%AC&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiW9pGwisDNAhUBvJQKHbLaCfAQ_AUICCgB&biw=1330&bih=650",
+                        "title":"犬です"
                     }
                 ]
             }
