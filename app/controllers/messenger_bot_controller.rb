@@ -48,12 +48,14 @@ class MessengerBotController < ActionController::Base
                     {
                         "type":"web-url",
                         "url":"https://www.google.co.jp/search?q=%E7%8C%AB&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjetuaSisDNAhURNpQKHeiHDnkQ_AUICCgB&biw=1330&bih=650",
-                        "title":"猫です"
+                        "title":"猫です",
+                        "payload":"OVER"
                     },
                     {
                         "type":"web-url",
                         "url":"https://www.google.co.jp/search?q=%E7%8A%AC&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiW9pGwisDNAhUBvJQKHbLaCfAQ_AUICCgB&biw=1330&bih=650",
-                        "title":"犬です"
+                        "title":"犬です",
+                        "payload":"UNDER"
                     }
                 ]
             }
