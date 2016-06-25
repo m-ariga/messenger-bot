@@ -12,12 +12,12 @@ class MessengerBotController < ActionController::Base
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"はいどうも",
+                        "title":"こんにちは",
                         "payload":"OVER"
                     },
                     {
                         "type":"postback",
-                        "title":"あんた誰",
+                        "title":"話したくない",
                         "payload":"UNDER"
                     }
                 ]
@@ -43,45 +43,67 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"猫と犬どちらがお好きですか？",
+                "text":"あなたの現実逃避をお手伝いします。どんな気分に浸りたいですか？",
                 "buttons":[
                     {
                         "type":"web_url",
-                        "url":"https://www.google.co.jp/search?q=%E7%8C%AB&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjetuaSisDNAhURNpQKHeiHDnkQ_AUICCgB&biw=1330&bih=650",
-                        "title":"猫です",
+                        "url":"https://soundcloud.com/tags/deep%20house",
+                        "title":"クラブで踊りたい",
                         
                     },
                     {
                         "type":"web_url",
-                        "url":"https://www.google.co.jp/search?q=%E7%8A%AC&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiW9pGwisDNAhUBvJQKHbLaCfAQ_AUICCgB&biw=1330&bih=650",
-                        "title":"犬です",
+                        "url":"https://soundcloud.com/tags/bossanova",
+                        "title":"地中海のリゾートでのんびりしたい",
                         
                     },
                     {
                         "type":"postback",
-                        "title":"他の話がしたい",
+                        "title":"どっちも興味ない",
                         "payload":"THIRD"
                     }
                 ]
             }
         }
       })
+      when "THIRD"
+             sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"こちらはいかがですか？",
+                "buttons":[
+                    {
+                        "type":"web_url",
+                        "title":"ホテルの最上階のバーでお酒を飲みたい",
+                        "url":"https://soundcloud.com/tags/jazz"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"アラスカでオーロラを見たい",
+                        "url":"https://soundcloud.com/search?q=enya"
+                    }
+                ]
+            }
+         }
+      })
+          
       when "UNDER"
         sender.reply({ "attachment":{
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"私は、猫好きの女が作ったメッセンジャーボットです。ところで、#{profile_last_name}#{profile_first_name}さんは猫と犬どちらがお好きですか",
+                "text":"少しお疲れではないですか？現実逃避のお手伝いをしますよ",
                 "buttons":[
                     {
-                        "type":"postback",
-                        "title":"もちろん猫",
-                        "payload":"OVER"
+                        "type":"web_url",
+                        "title":"ホテルの最上階のバーでお酒を飲みたい",
+                        "url":"https://soundcloud.com/tags/jazz"
                     },
                     {
                         "type":"postback",
-                        "title":"やっぱり猫",
-                        "payload":"UNDER"
+                        "title":"アラスカでオーロラを見たい",
+                        "url":"https://soundcloud.com/search?q=enya"
                     }
                 ]
             }
