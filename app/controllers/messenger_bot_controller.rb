@@ -38,7 +38,7 @@ class MessengerBotController < ActionController::Base
     payload = event["postback"]["payload"]
     case payload
     when "OVER"
-      
+    
     sender.reply({ "attachment":{
             "type":"template",
             "payload":{
@@ -56,6 +56,11 @@ class MessengerBotController < ActionController::Base
                         "url":"https://www.google.co.jp/search?q=%E7%8A%AC&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiW9pGwisDNAhUBvJQKHbLaCfAQ_AUICCgB&biw=1330&bih=650",
                         "title":"犬です",
                         
+                    },
+                    {
+                        "type":"postback",
+                        "title":"他の話がしたい",
+                        "payload":"THIRD"
                     }
                 ]
             }
