@@ -108,7 +108,7 @@ class MessengerBotController < ActionController::Base
          }
       })
       when "clubmusic"
-          sender.reply({text: "クラブミュージック"})
+          sender.reply({ text: "クラブミュージック"})
       when "brazil"
           sender.reply({ text: "サンバ" })
       when "bossanova"
@@ -117,6 +117,11 @@ class MessengerBotController < ActionController::Base
           sender.reply({ text: "ジャズ" })
       
       #ex) process sender.reply({text: "button click event!"})
+    end
+    if text == "お気に入り"
+        sender.reply({ text: "お気に入り一覧" })
+    else 
+        sender.reply({ text: "すみません、分かりませんでした。"})
     end
   end
 end
