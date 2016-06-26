@@ -2,35 +2,23 @@ class MessengerBotController < ActionController::Base
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
   profile = sender.get_profile[:body]
-    profile_last_name = profile['last_name']
-    profile_first_name = profile['first_name']
-    
-  {
-      "setting_type":"call_to_actions",
-  "thread_state":"new_thread",
-  "call_to_actions":[
-    {
-      "message":{
-        "text":"現実逃避BGMボットへようこそ！"
-      }
-    }
-  ]
-  }
-    
-    sender.reply({ "attachment":{
+  profile_last_name = profile['last_name']
+  profile_first_name = profile['first_name']
+ 
+  sender.reply({ "attachment":{
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは",
+                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"こんにちは",
+                        "title":"曲を探す",
                         "payload":"OVER"
                     },
                     {
                         "type":"postback",
-                        "title":"話したくない",
+                        "title":"何もしない",
                         "payload":"UNDER"
                     }
                 ]
@@ -51,77 +39,83 @@ class MessengerBotController < ActionController::Base
     payload = event["postback"]["payload"]
     case payload
     when "OVER"
-    
     sender.reply({ "attachment":{
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_last_name} #{profile_first_name}さんの現実逃避をお手伝いします。どんな気分に浸りたいですか？",
+                "text":"#{profile_last_name} #{profile_first_name}さんは今どんな気分ですか？",
                 "buttons":[
                     {
-                        "type":"web_url",
-                        "url":"https://soundcloud.com/tags/deep%20house",
-                        "title":"クラブで踊りたい",
-                        
-                    },
-                    {
-                        "type":"web_url",
-                        "url":"https://soundcloud.com/tags/bossanova",
-                        "title":"地中海のリゾートでのんびりしたい",
-                        
+                        "type":"postback",
+                        "title":"ノリノリで行きたい",
+                        "payload":"HIGHTEMPO"
                     },
                     {
                         "type":"postback",
-                        "title":"どっちも興味ない",
-                        "payload":"THIRD"
+                        "title":"リラックスしたい",
+                        "payload":"LOWTEMPO"
                     }
                 ]
             }
         }
       })
-      when "THIRD"
-             sender.reply({ "attachment":{
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"こちらはいかがですか？",
-                "buttons":[
-                    {
-                        "type":"web_url",
-                        "title":"ホテルの最上階のバーでお酒を飲みたい",
-                        "url":"https://soundcloud.com/tags/jazz"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"アラスカでオーロラを見たい",
-                        "url":"https://soundcloud.com/search?q=enya"
-                    }
-                ]
-            }
-         }
-      })
-          
+      
       when "UNDER"
+             sender.reply({ text: "わかりました。またいつでも呼んでくださいね。"})
+    
+      when "HIGHTEMPO"
         sender.reply({ "attachment":{
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"少しお疲れではないですか？現実逃避のお手伝いをしますよ",
+                "text":"ノリノリといえばこんな感じでしょうか？",
                 "buttons":[
                     {
-                        "type":"web_url",
-                        "title":"ホテルの最上階のバーでお酒を飲みたい",
-                        "url":"https://soundcloud.com/tags/jazz"
+                        "type":"postback",
+                        "title":"クラブで踊りたい",
+                        "payload":"clubmusic"
+                        
                     },
                     {
                         "type":"postback",
-                        "title":"アラスカでオーロラを見たい",
-                        "url":"https://soundcloud.com/search?q=enya"
+                        "title":"リオのカーニバルに行きたい",
+                        "payload":"brazil"
                     }
                 ]
             }
          }
       })
+      when "LOWTEMPO"
+          sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"リラックスといえばこんな感じでしょうか？",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"地中海のリゾートでのんびりしたい",
+                        "payload":"bossanova"
+                        
+                    },
+                    {
+                        "type":"postback",
+                        "title":"ホテルの最上階のラウンジでお酒を飲みたい",
+                        "payload":"jazz"
+                    }
+                ]
+            }
+         }
+      })
+      when "clubmusic"
+          sender.reply({text: "クラブミュージック"})
+      when "brazil"
+          sender.reply({ text: "サンバ" })
+      when "bossanova"
+          sender.reply({ text: "ボサノバ"})
+      when "jazz"
+          sender.reply({ text: "ジャズ" })
+      
       #ex) process sender.reply({text: "button click event!"})
     end
   end
