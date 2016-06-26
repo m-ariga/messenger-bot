@@ -1,9 +1,22 @@
 class MessengerBotController < ActionController::Base
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
-    profile = sender.get_profile[:body]
+  profile = sender.get_profile[:body]
     profile_last_name = profile['last_name']
     profile_first_name = profile['first_name']
+    
+  {
+      "setting_type":"call_to_actions",
+  "thread_state":"new_thread",
+  "call_to_actions":[
+    {
+      "message":{
+        "text":"現実逃避BGMボットへようこそ！"
+      }
+    }
+  ]
+  }
+    
     sender.reply({ "attachment":{
             "type":"template",
             "payload":{
@@ -43,7 +56,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"あなたの現実逃避をお手伝いします。どんな気分に浸りたいですか？",
+                "text":"#{profile_last_name} #{profile_first_name}さんの現実逃避をお手伝いします。どんな気分に浸りたいですか？",
                 "buttons":[
                     {
                         "type":"web_url",
