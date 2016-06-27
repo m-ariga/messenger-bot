@@ -5,7 +5,6 @@ class MessengerBotController < ActionController::Base
   profile_last_name = profile['last_name']
   profile_first_name = profile['first_name']
  
- if text == こんにちは
   sender.reply({ "attachment":{
             "type":"template",
             "payload":{
@@ -27,15 +26,16 @@ class MessengerBotController < ActionController::Base
          }
       })
       
-      elsif text == "お気に入り"
+      if text == "お気に入り"
         sender.reply({ text: "お気に入り一覧" })
       elsif text == "検索"
         sender.reply({ text: "曲名、あるいはアーティスト名を教えてください。"})
       elsif 
         sender.reply({ text: "すみません、分かりませんでした。"})
+      end
     # sender.reply({ text: "#{profile_last_name} #{profile_first_name}さんこんにちは" })
      # sender.reply({ text: "Reply: #{event['message']['text']}" })
- end
+  end
 
   def delivery(event, sender)
   end
