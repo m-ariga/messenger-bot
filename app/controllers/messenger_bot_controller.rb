@@ -26,13 +26,13 @@ class MessengerBotController < ActionController::Base
          }
       })
       
-      if text == "お気に入り"
-        sender.reply({ text: "お気に入り一覧" })
-      elsif text == "検索"
-        sender.reply({ text: "曲名、あるいはアーティスト名を教えてください。"})
-      elsif 
-        sender.reply({ text: "すみません、分かりませんでした。"})
-      end
+    #   if text == "お気に入り"
+    #     sender.reply({ text: "お気に入り一覧" })
+    #   elsif text == "検索"
+    #     sender.reply({ text: "曲名、あるいはアーティスト名を教えてください。"})
+    #   elsif 
+    #     sender.reply({ text: "すみません、分かりませんでした。"})
+    #   end
     # sender.reply({ text: "#{profile_last_name} #{profile_first_name}さんこんにちは" })
      # sender.reply({ text: "Reply: #{event['message']['text']}" })
   end
