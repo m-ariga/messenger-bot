@@ -5,7 +5,7 @@ class CreateFavorites < ActiveRecord::Migration
       t.string :music
       t.string :artist
 
-      t.timestamps null: false
+      #t.timestamps null: false
     end
   end
 end
